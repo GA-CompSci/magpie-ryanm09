@@ -61,6 +61,10 @@ public class StringExplorer
       
       
       // equals
+      String str1 = "Decode";
+      String str2 = "Decode";
+
+      System.out.println("Decode == Decode?:" + str1.equals(str2));
 
 	}
 }
