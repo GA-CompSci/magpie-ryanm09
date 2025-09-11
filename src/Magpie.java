@@ -64,10 +64,24 @@ public class Magpie {
 			response = "Tell me more about your pets.";
 		}
 
-        //--NAME--
-        else if (statement.indexOf("Ryan") != -1) {
-			response = "this Ryan guys sounds cool";
-		} 
+        //--MR A--
+        else if (statement.indexOf("Adiletta") != -1
+				|| statement.indexOf("Mr. A") !=-1)
+			response = "this Mr. A guys sounds cool";
+
+
+		//--I (SOMETHING) YOU--
+		else if(findKeyword(statement, "I") >= 0
+				&& findKeyword(statement, "you") >= 0
+				&& findKeyword(statement, "I") < findKeyword(statement, "you"))
+		{		
+			// find what's in between
+			int iPos = findKeyword(statement,"I");
+			int youPos = findKeyword(statement, "you");
+			String something = statement.substring(iPos + 1, youPos).trim();
+			response = "Why do you " + something + " me?";
+		}
+
 
 		//--I LIKE SOMETHING--
 		else if(findKeyword(statement, "I like") >= 0){
@@ -177,7 +191,7 @@ public class Magpie {
 	 * @return a non-committal string
 	 */
 	private String getRandomResponse() {
-		final int NUMBER_OF_RESPONSES = 4;
+		final int NUMBER_OF_RESPONSES = 7;
 		double r = Math.random();
 		int whichResponse = (int) (r * NUMBER_OF_RESPONSES);
 		String response = "";
@@ -190,6 +204,12 @@ public class Magpie {
 			response = "Do you really think so?";
 		} else if (whichResponse == 3) {
 			response = "You don't say.";
+		} else if (whichResponse == 4) {
+			response = "I don't care.";
+		} else if (whichResponse == 5) {
+			response = "Shut up.";
+		} else if (whichResponse == 6) {
+			response = "You really think that?";
 		}
 
 		return response;
